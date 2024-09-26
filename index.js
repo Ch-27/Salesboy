@@ -1,13 +1,36 @@
-const express = require('express'); //Import the express dependency
-const app = express();              //Instantiate an express app, the main work horse of this server
-const port = 3000;                  //Save the port number where your server will be listening
 
-//Idiomatic expression in express to route and respond to a client request
-app.get('/', (req, res) => {        //get requests to the root ("/") will route here
-    res.sendFile('index.html', {root: __dirname});      //server responds by sending the index.html file to the client's browser
-                                                        //the .sendFile method needs the absolute path to the file, see: https://expressjs.com/en/4x/api.html#res.sendFile 
-});
+// // server.js
+const express = require('express');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-app.listen(port, () => {            //server starts listening for any attempts from a client to connect at port: {port}
-    console.log(`Now listening on port ${port}`); 
+// Initialize express app
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware   
+app.use(express.json());     // Parse JSON request bodies
+
+// Import routes
+const userRoutes = require('./routes/userRoutes');
+const adRoutes = require('./routes/adRoutes');
+
+// Use routes
+app.use('/api/users', userRoutes);
+app.use('/api/ads', adRoutes);
+
+
+const username = encodeURIComponent(process.env.DB_username);
+const password = encodeURIComponent(process.env.DB_password);
+let uri =
+  `mongodb+srv://${username}:${password}@cluster0.s73ig.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+
+// MongoDB Connection
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
