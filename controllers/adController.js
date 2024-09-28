@@ -41,7 +41,7 @@ The user is located in ${user.profile.location}.`;
     } else if (result.content.status === 'completed') {
       // Assuming there is a way to access results when completed
       const adContent = result.content.results; // Adjust this based on the actual results structure
-      
+  
           // Convert the results object to a string if necessary
           const adContentString = JSON.stringify(adContent); // Convert object to JSON string
       
