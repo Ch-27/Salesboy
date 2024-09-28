@@ -12,7 +12,7 @@ const openai = new OpenAI({
 });
 
 // Generate a personalized ad for a user
-export const generateAd = async (req, res) => {
+ const generateAd = async (req, res) => {
   // console.log('generateAd controller called');
   // console.log('Received request body:', req.body);
   const {userID}  = req.body;
@@ -78,4 +78,5 @@ res.status(200).json({ ad: newAd });
     res.status(500).json({ error: error.message });
   }
 };
+export default generateAd;
 
