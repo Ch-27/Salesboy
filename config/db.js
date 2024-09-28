@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const username = encodeURIComponent(process.env.DB_username);
@@ -18,4 +19,4 @@ const connectDB = async () => {
     }
   };
 
-  module.exports = connectDB;
+  export default connectDB;

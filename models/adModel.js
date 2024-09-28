@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Ad Schema
 const adSchema = new mongoose.Schema({
@@ -7,4 +7,4 @@ const adSchema = new mongoose.Schema({
   interactions: { type: Array, default: [] },   // Track user interactions
 }, { timestamps: true });
 
-module.exports = mongoose.model('Ad', adSchema);
+export default mongoose.model('Ad', adSchema);

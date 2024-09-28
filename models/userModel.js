@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // User Schema
 const userSchema = new mongoose.Schema({
@@ -8,4 +8,4 @@ const userSchema = new mongoose.Schema({
   profile: { type: Object, default: {} },       // Contextual data, purchase history
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);
