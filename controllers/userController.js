@@ -1,5 +1,5 @@
 import User from '../models/userModel.js';
-import { fetchLocationFromIP } from '../utils/locationUtils.js'
+import { fetchLocationFromIP } from '../utils/location_utility.js'
 
 
 
